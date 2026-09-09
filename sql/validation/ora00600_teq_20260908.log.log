@@ -1,0 +1,193 @@
+=== ORA-00600 / TEQ SUPPORT EVIDENCE ===
+
+COLLECTED_AT_UTC
+-----------------------------------
+DB_NAME
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CONTAINER_NAME
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+INSTANCE_NAME
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COLLECTOR
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+08-SEP-26 08.42.59.243162000 PM GMT
+PDB_POCRT_02
+PDB_POCRT_02
+pocrt1
+SYS
+
+
+1 row selected.
+
+=== DATABASE VERSION AND PATCH CONTEXT ===
+
+BANNER_FULL
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Oracle AI Database 26ai EE Extreme Perf Release 23.26.3.0.0 - Production
+Version 23.26.3.0.0
+
+
+1 row selected.
+
+
+INSTANCE_NAME    HOST_NAME                                                        VERSION           STARTUP_T STATUS       PAR    THREAD#
+---------------- ---------------------------------------------------------------- ----------------- --------- ------------ --- ----------
+pocrt1           dev11-htoeb                                                      23.0.0.0.0        08-SEP-26 OPEN         YES          1
+
+1 row selected.
+
+
+NAME      OPEN_MODE            DATABASE_ROLE    LOG_MODE     FORCE_LOGGING
+--------- -------------------- ---------------- ------------ ---------------------------------------
+POCRT     READ WRITE           PRIMARY          ARCHIVELOG   YES
+
+1 row selected.
+
+
+  PATCH_ID PATCH_TYPE ACTION          STATUS                    ACTION_TIME                     DESCRIPTION
+---------- ---------- --------------- ------------------------- ------------------------------- ----------------------------------------------------------------------------------------------------
+  39578879 RU         APPLY           SUCCESS                   07-JUL-26 06.36.54.139452000 PM Database Release Update : 23.26.3.0.0 (39578879) Gold Image
+
+1 row selected.
+
+=== ADR LOCATIONS ===
+
+NAME
+----------------------------------------------------------------
+VALUE
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Diag Trace
+/u02/app/oracle/diag/rdbms/pocrt/pocrt1/trace
+
+Diag Alert
+/u02/app/oracle/diag/rdbms/pocrt/pocrt1/alert
+
+Default Trace File
+/u02/app/oracle/diag/rdbms/pocrt/pocrt1/trace/pocrt1_ora_55208.trc
+
+
+3 rows selected.
+
+=== RELEVANT ALERT LOG ENTRIES (LAST 24 HOURS) ===
+
+ORIGINATING_TIMESTAMP
+-----------------------------------
+MESSAGE_TEXT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+08-SEP-26 06.31.04.664000000 PM GMT
+Errors in file /u02/app/oracle/diag/rdbms/pocrt/pocrt1/trace/pocrt1_ora_303734.trc  (incident=836580) (PDBNAME=PDB_POCRT_02):
+ORA-00600: internal error code, arguments: [kwsdRmtDqIpc: error in ipc send], [24039], [], [], [], [], [], [], [], [], [], []
+
+
+1 row selected.
+
+=== INCIDENTS ===
+
+Error starting at line : 44 in command -
+select incident_id, create_time, problem_id, error_facility, error_number,
+       error_arg1, error_arg2, incident_file
+from v$diag_incident
+where create_time >= systimestamp - interval '24' hour
+  and error_number = 600
+order by create_time desc
+Error at Command Line : 45 Column : 32
+Error report -
+SQL Error: ORA-00904: "INCIDENT_FILE": invalid identifier
+Help: https://docs.oracle.com/error-help/db/ora-00904/
+=== TEQ CONFIGURATION (NO PAYLOADS) ===
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+NAME
+--------------------------------------------------------------------------------------------------------------------------------
+QUEUE_TABLE                                                                                                                      QUEUE_TYPE           MAX_RETRIES ENQUEUE DEQUEUE
+-------------------------------------------------------------------------------------------------------------------------------- -------------------- ----------- ------- -------
+NFE_OWNER
+NFE_MIGRATION_EX_Q
+NFE_MIGRATION_Q                                                                                                                  EXCEPTION_QUEUE                0 YES     YES
+
+NFE_OWNER
+NFE_MIGRATION_Q
+NFE_MIGRATION_Q                                                                                                                  NORMAL_QUEUE                   3 YES     YES
+
+
+2 rows selected.
+
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+QUEUE_TABLE
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_TYPE
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SORT_ORDER             RECIPIEN
+---------------------- --------
+NFE_OWNER
+NFE_MIGRATION_Q
+
+ENQUEUE_TIME           SINGLE
+
+
+1 row selected.
+
+
+MSG_STATE     MESSAGE_COUNT
+------------- -------------
+PROCESSED                95
+READY                     3
+RETRYEXPIRED              6
+
+3 rows selected.
+
+=== RETRY TEST CONTROL EVIDENCE (NO PAYLOADS OR XML) ===
+
+  BATCH_ID BATCH_CODE                                         BATCH_STATUS                   CONTROL_ID ITEM_STATUS                    AQ_MSGID                         ENQUEUED_AT
+---------- -------------------------------------------------- ------------------------------ ---------- ------------------------------ -------------------------------- --------------------------------------
+LAST_ERROR_CODE                                                                                      LAST_ERROR_AT
+---------------------------------------------------------------------------------------------------- --------------------------------------
+         8 RETRY-5AAF6A0274B1404CE063                         SELECTING                              11 VERIFIED
+
+
+         9 RETRY-5AAF6CD3C87A5550E063                         SELECTING                              12 VERIFIED
+
+
+        10 RETRY-5AAF6FB928607012E063                         SELECTING                              13 VERIFIED
+
+
+        39 RETRY-5AFDD13F1086B575E063                         SELECTING                             126 QUEUED
+
+
+        40 RETRY-5AFDEFF65590A276E063                         SELECTING                             127 QUEUED
+
+
+
+5 rows selected.
+
+=== DEPLOYED PACKAGE STATE ===
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+OBJECT_NAME                                                                                                                      OBJECT_TYPE             STATUS  LAST_DDL_
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------- ------- ---------
+NFE_OWNER
+PKG_NFE_EXCEPTION_MONITOR                                                                                                        PACKAGE                 VALID   04-SEP-26
+
+NFE_OWNER
+PKG_NFE_EXCEPTION_MONITOR                                                                                                        PACKAGE BODY            VALID   04-SEP-26
+
+NFE_OWNER
+PKG_NFE_MIGRATION                                                                                                                PACKAGE                 VALID   08-SEP-26
+
+NFE_OWNER
+PKG_NFE_MIGRATION                                                                                                                PACKAGE BODY            VALID   08-SEP-26
+
+NFE_OWNER
+PKG_NFE_WORKER                                                                                                                   PACKAGE                 VALID   08-SEP-26
+
+NFE_OWNER
+PKG_NFE_WORKER                                                                                                                   PACKAGE BODY            VALID   08-SEP-26
+
+
+6 rows selected.
+
+=== END OF EVIDENCE ===
