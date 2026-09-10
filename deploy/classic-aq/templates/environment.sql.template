@@ -1,0 +1,21 @@
+-- PoC-only configuration. Run as NFE_OWNER after the named DBMS_CLOUD
+-- credential and ACL have been provisioned. This file contains no key, secret,
+-- token, or password. Do not copy these endpoint values to another environment.
+begin
+  pkg_nfe_deploy_config.set_environment(
+    p_s3_endpoint       => 'https://idzvuvikb5ym.compat.objectstorage.us-ashburn-1.oci.customer-oci.com',
+    p_bucket_name        => 'POC_RT',
+    p_object_prefix      => 'nfe',
+    p_acl_host           => 'idzvuvikb5ym.compat.objectstorage.us-ashburn-1.oci.customer-oci.com',
+    p_credential_name    => 'NFE_OBJECT_STORAGE_S3_CRED',
+    p_source_owner       => 'NFE_OWNER',
+    p_source_table       => 'POC_NFE_DOCUMENT',
+    p_source_clob_column => 'XML_CLOB',
+    p_source_id_column   => 'NFE_ID',
+    p_source_key_column  => 'CHAVE_NFE',
+    p_source_date_column => 'DATA_EMISSAO',
+    p_source_status_column => 'SITUACAO',
+    p_max_inflight       => 1000);
+  commit;
+end;
+/

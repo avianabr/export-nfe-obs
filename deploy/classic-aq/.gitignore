@@ -1,0 +1,6 @@
+# Local, environment-specific inputs. These files can contain credentials or
+# endpoint values and are created from the versioned templates.
+environment.sql
+preflight-environment.sql
+principals.sql
+s3-credential.sql

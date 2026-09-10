@@ -1,0 +1,7 @@
+-- PoC-only metadata. Copy to ../preflight-environment.sql outside version
+-- control. This file contains no access key, secret, token, or password.
+define DEPLOY_S3_ENDPOINT = 'https://idzvuvikb5ym.compat.objectstorage.us-ashburn-1.oci.customer-oci.com'
+define DEPLOY_BUCKET_NAME = 'POC_RT'
+define DEPLOY_OBJECT_PREFIX = 'nfe'
+define DEPLOY_ACL_HOST = 'idzvuvikb5ym.compat.objectstorage.us-ashburn-1.oci.customer-oci.com'
+define DEPLOY_CREDENTIAL_NAME = 'NFE_OBJECT_STORAGE_S3_CRED'
