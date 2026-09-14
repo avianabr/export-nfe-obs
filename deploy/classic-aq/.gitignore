@@ -1,6 +1,9 @@
-# Local, environment-specific inputs. These files can contain credentials or
-# endpoint values and are created from the versioned templates.
+# Protected local installation input. It contains secrets and is never versioned.
 environment.sql
-preflight-environment.sql
+# Legacy protected files are ignored only to prevent accidental disclosure while
+# operators migrate their values to environment.sql and delete the old files.
 principals.sql
 s3-credential.sql
+# Legacy local input retained only to avoid accidental versioning during migration.
+# Current entry points never load it.
+preflight-environment.sql

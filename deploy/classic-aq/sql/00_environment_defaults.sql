@@ -1,0 +1,18 @@
+-- Neutral defaults prevent SQL*Plus prompts when the protected local
+-- environment.sql is absent or incomplete. It must override every marker.
+define DEPLOY_CONNECT_IDENTIFIER = '<host:port/service-name>'
+define DEPLOY_S3_ENDPOINT = '<https-s3-endpoint>'
+define DEPLOY_STORAGE_PROVIDER = '<S3_COMPATIBLE-or-OCI_NATIVE>'
+define DEPLOY_OCI_NAMESPACE = '<oci-namespace-or-empty-for-s3>'
+define DEPLOY_INTEGRITY_MODE = '<FULL_DOWNLOAD_SHA256-or-OCI_MD5_HEAD>'
+define DEPLOY_BUCKET_NAME = '<bucket-name>'
+define DEPLOY_OBJECT_PREFIX = '<object-prefix>'
+define DEPLOY_CREDENTIAL_NAME = '<credential-name>'
+define DEPLOY_SOURCE_OWNER = '<source-owner>'
+define DEPLOY_SOURCE_TABLE = '<source-table>'
+define DEPLOY_SOURCE_CLOB_COLUMN = '<source-clob-column>'
+define DEPLOY_SOURCE_ID_COLUMN = '<source-id-column>'
+define DEPLOY_SOURCE_KEY_COLUMN = '<source-key-column>'
+define DEPLOY_SOURCE_DATE_COLUMN = '<source-date-column>'
+define DEPLOY_SOURCE_STATUS_COLUMN = '<source-status-column>'
+define DEPLOY_MAX_INFLIGHT = '<positive-max-inflight>'

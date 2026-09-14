@@ -13,8 +13,6 @@ declare
 begin
   ensure_role('NFE_CLASSIC_AQ_RUNTIME_R'); ensure_role('NFE_CLASSIC_AQ_AUDITOR_R'); ensure_role('NFE_CLASSIC_AQ_PURGE_R');
   ensure_user('NFE_MIGRATION_RUNTIME','&&NFE_MIGRATION_RUNTIME_PASSWORD','NFE_CLASSIC_AQ_RUNTIME_R');
-  ensure_user('NFE_AUDITOR','&&NFE_AUDITOR_PASSWORD','NFE_CLASSIC_AQ_AUDITOR_R');
-  ensure_user('NFE_PURGE_ADMIN','&&NFE_PURGE_ADMIN_PASSWORD','NFE_CLASSIC_AQ_PURGE_R');
-  dbms_output.put_line('PASS: internal users and roles created or validated.');
+  dbms_output.put_line('PASS: runtime user and private roles created or validated; no human account was created.');
 end;
 /
