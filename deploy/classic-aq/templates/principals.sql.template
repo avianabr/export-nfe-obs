@@ -1,4 +1,0 @@
--- Copy to ../principals.sql, protect it, and replace every marker. Never commit it.
-define NFE_MIGRATION_RUNTIME_PASSWORD = '<runtime-password>'
-define NFE_AUDITOR_PASSWORD = '<auditor-password>'
-define NFE_PURGE_ADMIN_PASSWORD = '<purge-password>'

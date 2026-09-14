@@ -1,21 +1,34 @@
--- PoC-only configuration. Run as NFE_OWNER after the named DBMS_CLOUD
--- credential and ACL have been provisioned. This file contains no key, secret,
--- token, or password. Do not copy these endpoint values to another environment.
-begin
-  pkg_nfe_deploy_config.set_environment(
-    p_s3_endpoint       => 'https://idzvuvikb5ym.compat.objectstorage.us-ashburn-1.oci.customer-oci.com',
-    p_bucket_name        => 'POC_RT',
-    p_object_prefix      => 'nfe',
-    p_acl_host           => 'idzvuvikb5ym.compat.objectstorage.us-ashburn-1.oci.customer-oci.com',
-    p_credential_name    => 'NFE_OBJECT_STORAGE_S3_CRED',
-    p_source_owner       => 'NFE_OWNER',
-    p_source_table       => 'POC_NFE_DOCUMENT',
-    p_source_clob_column => 'XML_CLOB',
-    p_source_id_column   => 'NFE_ID',
-    p_source_key_column  => 'CHAVE_NFE',
-    p_source_date_column => 'DATA_EMISSAO',
-    p_source_status_column => 'SITUACAO',
-    p_max_inflight       => 1000);
-  commit;
-end;
-/
+-- Copy to ../environment.sql, protect it locally, and replace every marker.
+-- This file contains only non-secret values, but remains ignored by .gitignore
+-- to prevent target configuration from being committed accidentally.
+--
+-- Oracle Net identifier of the target PDB, used by the main orchestrator.
+define DEPLOY_CONNECT_IDENTIFIER = '<host:port/service-name>'
+-- SYS, NFE_OWNER and S3 keys are prompted by 00_run-installation.sql and are
+-- never stored in this file. The runtime password is generated in-session.
+-- Auditor and purge access use roles granted later by a DBA to approved,
+-- individual human accounts. Do not define or create shared human accounts here.
+-- Canonical HTTPS authority of the S3-compatible service; no path, port or query.
+define DEPLOY_S3_ENDPOINT = '<https-s3-endpoint>'
+-- Target S3-compatible bucket name.
+define DEPLOY_BUCKET_NAME = '<bucket-name>'
+-- Nonempty object-key prefix; do not start it with a slash.
+define DEPLOY_OBJECT_PREFIX = '<object-prefix>'
+-- Name of the DBMS_CLOUD credential created for this deployment.
+define DEPLOY_CREDENTIAL_NAME = '<credential-name>'
+-- Schema that owns the source NF-e table.
+define DEPLOY_SOURCE_OWNER = '<source-owner>'
+-- Source NF-e table name.
+define DEPLOY_SOURCE_TABLE = '<source-table>'
+-- CLOB column that contains the NF-e XML.
+define DEPLOY_SOURCE_CLOB_COLUMN = '<source-clob-column>'
+-- NUMBER column that uniquely identifies the source NF-e.
+define DEPLOY_SOURCE_ID_COLUMN = '<source-id-column>'
+-- Business-key column, normally the 44-character NF-e key.
+define DEPLOY_SOURCE_KEY_COLUMN = '<source-key-column>'
+-- Emission-date column used by batch selection.
+define DEPLOY_SOURCE_DATE_COLUMN = '<source-date-column>'
+-- Source status column used to select eligible documents.
+define DEPLOY_SOURCE_STATUS_COLUMN = '<source-status-column>'
+-- Maximum number of documents that may be in flight; positive integer.
+define DEPLOY_MAX_INFLIGHT = '<positive-max-inflight>'
